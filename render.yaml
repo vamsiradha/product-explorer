@@ -62,10 +62,4 @@ databases:
     # or use databaseName only if your Render plan supports it
 
 
-  # Redis Instance
-  - type: redis
-    name: product-explorer-redis
-    region: oregon
-    ipAllowList: []
-    plan: free
-    maxmemoryPolicy: allkeys-lru
+
