@@ -51,18 +51,16 @@ services:
         destination: /index.html
     autoDeploy: true
 
-  # PostgreSQL Database
-  - type: pgsql
-    name: product-explorer-db
-    region: oregon
-    ipAllowList: []
+# PostgreSQL Database (separate from services)
+databases:
+  - name: product-explorer-db
     databaseName: product_explorer
+    region: oregon
     plan: free
 
-  # Redis Instance
-  - type: redis
-    name: product-explorer-redis
+# Redis Instance (separate from services)
+redis:
+  - name: product-explorer-redis
     region: oregon
-    ipAllowList: []
     plan: free
     maxmemoryPolicy: allkeys-lru
