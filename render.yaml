@@ -61,10 +61,11 @@ databases:
     # Remove databaseName field - Render creates it automatically
     # or use databaseName only if your Render plan supports it
 
-redisInstances:
+
   # Redis Instance
-  - name: product-explorer-redis
+  - type: redis
+    name: product-explorer-redis
     region: oregon
-    plan: free
     ipAllowList: []
+    plan: free
     maxmemoryPolicy: allkeys-lru
