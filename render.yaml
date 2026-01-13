@@ -4,7 +4,6 @@ services:
   - type: web
     name: product-explorer-backend
     env: node
-    region: oregon
     buildCommand: |
       npm install
       npx prisma generate
@@ -37,7 +36,6 @@ services:
   - type: web
     name: product-explorer-frontend
     env: static
-    region: oregon
     buildCommand: |
       cd frontend
       npm install
@@ -55,7 +53,6 @@ services:
 databases:
   # PostgreSQL Database
   - name: product-explorer-db
-    region: oregon
     plan: free
     ipAllowList: []
     # Remove databaseName field - Render creates it automatically
