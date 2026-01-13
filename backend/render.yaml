@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: product-explorer-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://product-explorer-frontend.onrender.com
+    healthCheckPath: /scraping/navigation
+    autoDeploy: true
+
+  - type: web
+    name: product-explorer-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/out
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://product-explorer-backend.onrender.com
+    autoDeploy: true
