@@ -1,3 +1,4 @@
+version: "1"
 services:
   # Backend Service
   - type: web
@@ -22,8 +23,8 @@ services:
           property: connectionString
       - key: REDIS_URL
         fromService:
-          name: product-explorer-redis
           type: redis
+          name: product-explorer-redis
           property: connectionString
     healthCheckPath: /scraping/navigation
     autoDeploy: true
@@ -41,7 +42,7 @@ services:
       cd frontend
       npm install
       npm run build
-    staticPublishPath: frontend/out
+    staticPublishPath: ./frontend/out
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://product-explorer-backend.onrender.com
@@ -51,16 +52,18 @@ services:
         destination: /index.html
     autoDeploy: true
 
-# PostgreSQL Database (separate from services)
-databases:
-  - name: product-explorer-db
-    databaseName: product_explorer
+  # PostgreSQL Database
+  - type: postgres
+    name: product-explorer-db
     region: oregon
+    ipAllowList: []
+    databaseName: product_explorer
     plan: free
 
-# Redis Instance (separate from services)
-redis:
-  - name: product-explorer-redis
+  # Redis Instance
+  - type: redis
+    name: product-explorer-redis
     region: oregon
+    ipAllowList: []
     plan: free
     maxmemoryPolicy: allkeys-lru
