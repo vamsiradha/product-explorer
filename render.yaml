@@ -52,18 +52,19 @@ services:
         destination: /index.html
     autoDeploy: true
 
+databases:
   # PostgreSQL Database
-  - type: pserv
-    name: product-explorer-db
+  - name: product-explorer-db
     region: oregon
-    ipAllowList: []
-    databaseName: product_explorer
     plan: free
+    ipAllowList: []
+    # Remove databaseName field - Render creates it automatically
+    # or use databaseName only if your Render plan supports it
 
+redisInstances:
   # Redis Instance
-  - type: redis
-    name: product-explorer-redis
+  - name: product-explorer-redis
     region: oregon
-    ipAllowList: []
     plan: free
+    ipAllowList: []
     maxmemoryPolicy: allkeys-lru
