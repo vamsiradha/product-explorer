@@ -53,7 +53,7 @@ services:
     autoDeploy: true
 
   # PostgreSQL Database
-  - type: postgres
+  - type: pserv
     name: product-explorer-db
     region: oregon
     ipAllowList: []
